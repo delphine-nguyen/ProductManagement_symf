@@ -14,7 +14,7 @@
 		{% if products %}
 			<section class="productList">
 				{% for product in products %}
-					<article class="product">
+					<article class="productCard">
 						<p class="productName">{{ product.name }}</p>
 						<img src="{{ product.urlImage }}" alt="Placeholder" class="productImg"/>
 						<p class="productPrice">{{ product.price }}€</p>
