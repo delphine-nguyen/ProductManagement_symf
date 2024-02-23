@@ -19,21 +19,15 @@
 						<img src="{{ product.urlImage }}" alt="Placeholder" class="productImg"/>
 						<p class="productPrice">{{ product.price }}€</p>
 						<p class="productDesc">{{ product.description }}</p>
-						{% if app.user %}
-							{% if "ROLE_ADMIN" in app.user.roles %}
-								<div class="productActions">
-									<a href="{{ path('app_product_show', {'id': product.id}) }}" class="routeButton">show</a>
-									<a href="{{ path('app_product_edit', {'id': product.id}) }}" class="routeButton">edit</a>
-								</div>
-							{% endif %}
+						<a href="{{ path('app_product_show', {'id': product.id}) }}" class="routeButton">show</a>
+						{% if is_granted("ROLE_ADMIN") %}
+							<a href="{{ path('app_product_edit', {'id': product.id}) }}" class="routeButton">edit</a>
 						{% endif %}
 					</article>
 				{% endfor %}
 			</section>
-			{% if app.user %}
-				{% if "ROLE_ADMIN" in app.user.roles %}
-					<a href="{{ path('app_product_new') }}" class="routeButton">Add a product</a>
-				{% endif %}
+			{% if is_granted("ROLE_ADMIN") %}
+				<a href="{{ path('app_product_new') }}" class="routeButton">Add a product</a>
 			{% endif %}
 		{% else %}
 			<p>no records found</p>
