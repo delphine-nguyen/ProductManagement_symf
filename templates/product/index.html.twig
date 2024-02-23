@@ -1,41 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product index{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset("css/product_index.css") }}"/>
+{% endblock %}
+
+{% block title %}Products
+{% endblock %}
 
 {% block body %}
-    <h1>Product index</h1>
+	<h1>Products</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Price</th>
-                <th>Description</th>
-                <th>UrlImage</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.urlImage }}</td>
-                <td>{{ product.name }}</td>
-                <td>
-                    <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_product_new') }}">Create new</a>
+	<main>
+		{% if products %}
+			<section class="productList">
+				{% for product in products %}
+					<article class="product">
+						<p class="productName">{{ product.name }}</p>
+						<img src="{{ product.urlImage }}" alt="Placeholder" class="productImg"/>
+						<p class="productPrice">{{ product.price }}€</p>
+						<p class="productDesc">{{ product.description }}</p>
+						{% if app.user %}
+							{% if "ROLE_ADMIN" in app.user.roles %}
+								<div class="productActions">
+									<a href="{{ path('app_product_show', {'id': product.id}) }}" class="routeButton">show</a>
+									<a href="{{ path('app_product_edit', {'id': product.id}) }}" class="routeButton">edit</a>
+								</div>
+							{% endif %}
+						{% endif %}
+					</article>
+				{% endfor %}
+			</section>
+			{% if app.user %}
+				{% if "ROLE_ADMIN" in app.user.roles %}
+					<a href="{{ path('app_product_new') }}" class="routeButton">Add a product</a>
+				{% endif %}
+			{% endif %}
+		{% else %}
+			<p>no records found</p>
+		{% endif %}
+	</main>
 {% endblock %}
