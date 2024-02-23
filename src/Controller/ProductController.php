@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/product')]
 class ProductController extends AbstractController
@@ -22,7 +23,7 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_product_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_product_new', methods: ['GET', 'POST']), IsGranted("ROLE_ADMIN")]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $product = new Product();
@@ -50,7 +51,7 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_product_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_product_edit', methods: ['GET', 'POST']), IsGranted("ROLE_ADMIN")]
     public function edit(Request $request, Product $product, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ProductType::class, $product);
@@ -68,10 +69,10 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_product_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_product_delete', methods: ['POST']), IsGranted("ROLE_ADMIN")]
     public function delete(Request $request, Product $product, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
             $entityManager->remove($product);
             $entityManager->flush();
         }
