@@ -31,6 +31,11 @@ h1 {
 	text-align: center;
 }
 
+h2 {
+	font-size: 30px;
+	text-align: center;
+}
+
 /* Main & Body */
 
 main {
@@ -52,9 +57,6 @@ main {
 .routeButton {
 	text-decoration: none;
 	color: blue;
-}
-
-button {
 }
 
 /* Form */
