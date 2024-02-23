@@ -22,6 +22,9 @@ class Product
     #[ORM\Column(length: 255)]
     private ?string $urlImage = null;
 
+    #[ORM\Column(length: 50)]
+    private ?string $name = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Product
     public function setUrlImage(string $urlImage): static
     {
         $this->urlImage = $urlImage;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
 
         return $this;
     }
