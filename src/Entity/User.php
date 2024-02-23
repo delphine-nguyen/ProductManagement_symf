@@ -146,7 +146,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->registrationDate;
     }
 
-    public function setRegistrationDate(\DateTimeImmutable $registrationDate): static
+    public function setRegistrationDate(\DateTimeImmutable $registrationDate = new \DateTimeImmutable()): static
     {
         $this->registrationDate = $registrationDate;
 
