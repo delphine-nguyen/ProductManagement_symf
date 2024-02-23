@@ -1,5 +1,8 @@
 /* Navbar */
 
+header {
+}
+
 header > nav {
 	display: flex;
 	justify-content: space-between;
@@ -39,10 +42,37 @@ main {
 	justify-content: center;
 
 	gap: 20px;
+
+	max-width: 70%;
+	margin: 10px auto;
 }
 
 /* Buttons */
 
 .routeButton {
 	text-decoration: none;
+	color: blue;
+}
+
+button {
+}
+
+/* Form */
+
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	border: 1px solid blue;
+
+	padding: 10px;
+}
+
+input {
+	display: flex;
+	flex-direction: column;
+
+	border: 1px solid grey;
 }
