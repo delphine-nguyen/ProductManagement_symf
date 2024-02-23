@@ -21,12 +21,10 @@
 					<a href="{{ path("app_product_index") }}">Products</a>
 				</div>
 				<div class="justify-end">
-					<p id="user-email" class="primaryColor justify-end">
-						{% if app.user %}
-							<a href="">{{ app.user.firstname }}
-								{{ app.user.name }}</a>
-						{% endif %}
-					</p>
+					{% if app.user %}
+						<a href="">{{ app.user.firstname }}
+							{{ app.user.name }}</a>
+					{% endif %}
 					<a href="{{ path(app.user ? "app_logout" : "app_login") }}" class="justify-end">{{ app.user ? "Logout" : "Login" }}</a>
 				</div>
 			</nav>

@@ -1,6 +1,12 @@
 /* Navbar */
 
 header {
+	background-color: blue;
+	padding: 10px;
+}
+
+header > nav > div > a {
+	color: white;
 }
 
 header > nav {
@@ -13,10 +19,6 @@ header > nav {
 
 header > .primaryColor {
 	color: red;
-}
-
-#user-email {
-	display: inline;
 }
 
 .productImg {
